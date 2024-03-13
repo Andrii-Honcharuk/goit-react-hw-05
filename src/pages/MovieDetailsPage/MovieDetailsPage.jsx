@@ -24,16 +24,12 @@ export default function MovieDetailsPage() {
   const location = useLocation();
 
   const backLinkRef = useRef(location.state ?? "/movies");
-  console.log("LOCATION", location.state);
-  console.log("REF_linkGoBack", backLinkRef.current);
 
   useEffect(() => {
     async function fetchMovieById() {
       try {
-        // console.log("byID");
         // setIsLoading(true);
         const data = await getMovieById(movieId);
-        // console.log("Movie", data);
         setMovie(data);
       } catch (error) {
         // setError(true);

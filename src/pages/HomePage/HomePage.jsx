@@ -15,10 +15,8 @@ export default function HomePage() {
       try {
         setIsLoading(true);
         const popularMovies = await getMovies();
-        console.log(popularMovies.results);
         setMovies(popularMovies.results);
       } catch (error) {
-        console.log(error);
         setError(true);
       } finally {
         setIsLoading(false);

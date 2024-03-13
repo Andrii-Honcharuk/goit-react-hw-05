@@ -6,10 +6,6 @@ import { Route, Routes } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import MovieReviews from "../MovieReviews/MovieReviews";
 import MovieCast from "../MovieCast/MovieCast";
-// import HomePage from "../../pages/HomePage/HomePage";
-// import MoviesPage from "../../pages/MoviesPage/MoviesPage";
-// import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
-// import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("../../pages/MoviesPage/MoviesPage"));

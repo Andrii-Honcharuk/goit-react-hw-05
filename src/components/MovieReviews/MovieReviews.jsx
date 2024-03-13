@@ -26,7 +26,6 @@ export default function MovieReviews() {
     fetchMovieReviewsById();
   }, [movieId]);
 
-  console.log("Reviews", reviews.results);
   return (
     <div>
       <p className={css.error}>
@@ -37,7 +36,6 @@ export default function MovieReviews() {
           reviews.results.map((review) => (
             <li key={review.id}>
               <h3>{review.author}</h3>
-              {/* {review.content} */}
               <p dangerouslySetInnerHTML={{ __html: review.content }} />
             </li>
           ))}

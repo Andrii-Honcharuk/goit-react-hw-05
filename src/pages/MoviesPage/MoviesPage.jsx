@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import MovieList from "../../components/MovieList/MovieList";
 import { getMovieByName } from "../../films-api";
 import { useEffect } from "react";
-// import LoadMore from "../../components/LoadMoreBtn/LoadMoreBtn";
 
 import css from "./MoviesPage.module.css";
 
@@ -17,16 +16,7 @@ export default function MoviesPage() {
 
   const movieFilter = query.get("films") ?? "";
 
-  const location = useLocation();
-  console.log("Movie Page LOCATION", location);
-
   // const notifyEmpty = () => toast.error("Please enter a value in the field");
-
-  // const changeFilmFilter = (newFilter) => {
-  //   query.set("films", newFilter);
-  //   console.log("MP-query", query);
-  //   setQuery(query);
-  // };
 
   useEffect(() => {
     if (movieFilter === "") {
@@ -35,12 +25,8 @@ export default function MoviesPage() {
     async function searchMovies() {
       try {
         // setMovies([]);
-        const data = await getMovieByName(
-          movieFilter
-          // page
-        );
+        const data = await getMovieByName(movieFilter);
         setMovies(data.results);
-        console.log("Results", data.results);
         // setIsLoadMore(data.total_pages > page);
       } catch (error) {
         console.error(error);
@@ -59,19 +45,12 @@ export default function MoviesPage() {
     const formData = new FormData(e.target);
     const searchQuery = formData.get("query");
     if (searchQuery.trim() === "") {
-      console.log("Empty query");
-      // notifyEmpty();
+      alert("Please enter a value in the field");
     } else {
       query.set("films", searchQuery.trim());
       setQuery(query);
     }
   };
-
-  // const handleLoadMore = () => {
-  // setPage(page + 1);
-  // query.set("page", page + 1);
-  // setQuery(query);
-  // };
 
   return (
     <div className={css.mpContainer}>
@@ -93,36 +72,3 @@ export default function MoviesPage() {
     </div>
   );
 }
-
-/*
-
- const notifyEmpty = () => toast.error("Please enter a value in the field");
-  return (
-    <header className={css.headerContainer}>
-      <Formik
-        initialValues={{ query: "" }}
-        onSubmit={(values, actions) => {
-          if (values.query.trim() === "") {
-            notifyEmpty();
-          } else {
-            onSearch(values.query.trim());
-            actions.resetForm();
-          }
-        }}
-      >
-        <Form className={css.searchBar}>
-          <Field
-            type="text"
-            name="query"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-          />
-          <button type="submit">Search</button>
-        </Form>
-      </Formik>
-    </header>
-  );
-}
-
-*/

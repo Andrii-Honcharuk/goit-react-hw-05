@@ -14,7 +14,6 @@ const url = 'trending/movie/day?language=en-US';
 
 export const getMovies = async () => {
   const response = await axios.get(url, options);
-  console.log('getMovies', response.data);
   return response.data;
 };
 
@@ -22,7 +21,6 @@ export const getMovies = async () => {
 
 export const getMovieById = async (movieId) => {
   const response = await axios.get(`movie/${movieId}`, options);
-  console.log('getMovieById', response.data);
   return response.data;
 };
 
@@ -31,10 +29,7 @@ export const getMovieById = async (movieId) => {
 
 export const getMovieCreditsById = async (movieId) => {
   const response = await axios.get(`movie/${movieId}/credits`, options);
-  
-  console.log('getMovieCredits', response.data.cast,);
-  const actingCast = response.data.cast.filter(actor => actor.known_for_department === 'Acting');
-  console.log('Актори', actingCast);
+    const actingCast = response.data.cast.filter(actor => actor.known_for_department === 'Acting');
   return actingCast;
 };
 
@@ -43,7 +38,6 @@ export const getMovieCreditsById = async (movieId) => {
 
 export const getMovieReviewsById = async (movieId) => {
   const response = await axios.get(`movie/${movieId}/reviews`, options);
-  console.log('getMovieReviews', response);
   return response.data;
 };
 
@@ -52,7 +46,6 @@ export const getMovieReviewsById = async (movieId) => {
 
 export const getMovieByName = async (query, page=1) => {
   const response = await axios.get(`/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`, options);
-  console.log('Query - ', query,'SEARCH', response.data);
   return response.data;
 };
 

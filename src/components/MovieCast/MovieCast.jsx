@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getMovieCreditsById } from "../../films-api";
 
 import css from "./MovieCast.module.css";
 
 export default function MovieCast() {
-  const location = useLocation();
-  console.log("LOCATION", location);
-
   const { movieId } = useParams();
 
   // const [isLoading, setIsLoading] = useState(false);
@@ -16,10 +13,8 @@ export default function MovieCast() {
   useEffect(() => {
     async function fetchMovieCastById() {
       try {
-        console.log("byID");
         // setIsLoading(true);
         const data = await getMovieCreditsById(movieId);
-        console.log("Cast", data);
         setCast(data);
       } catch (error) {
         // setError(true);
