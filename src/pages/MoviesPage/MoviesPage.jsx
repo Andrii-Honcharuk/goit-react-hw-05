@@ -5,6 +5,8 @@ import { getMovieByName } from "../../films-api";
 import { useEffect } from "react";
 // import LoadMore from "../../components/LoadMoreBtn/LoadMoreBtn";
 
+import css from "./MoviesPage.module.css";
+
 export default function MoviesPage() {
   // const [page, setPage] = useState(1);
   const [query, setQuery] = useSearchParams();
@@ -72,7 +74,7 @@ export default function MoviesPage() {
   // };
 
   return (
-    <div>
+    <div className={css.mpContainer}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

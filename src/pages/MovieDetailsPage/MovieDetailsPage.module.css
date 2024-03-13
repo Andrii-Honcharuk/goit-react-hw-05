@@ -1,0 +1,55 @@
+.movieDetContainer {
+  min-height: 100vh;
+  padding: 12px;
+  background-color: rgba(108, 110, 250, 0.5);
+}
+
+.baseContainer {
+  display: flex;
+  gap: 12px;
+}
+.header {
+  text-align: center;
+}
+.goBack {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  display: inline-block;
+  padding: 8px;
+  background-color: gray;
+  border-radius: 8px;
+}
+
+.goBack:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+.baseContainer {
+}
+.imgMovie {
+  max-width: 220px;
+}
+.detList {
+  font-size: 18px;
+}
+
+.detList:active {
+  font-size: 18px;
+}
+.listLinks {
+  margin-top: 12px;
+  margin-bottom: 18px;
+  display: flex;
+  gap: 12px;
+}
+.link {
+  color: blue;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.isActive {
+  color: rgb(141, 18, 18);
+  text-decoration: underline;
+}

@@ -1,0 +1,8 @@
+.hpContainer {
+  background-color: rgba(108, 110, 250, 0.5);
+  padding-left: 16px;
+  min-height: 95vh;
+}
+.header {
+  text-align: center;
+}

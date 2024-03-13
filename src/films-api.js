@@ -55,3 +55,4 @@ export const getMovieByName = async (query, page=1) => {
   console.log('Query - ', query,'SEARCH', response.data);
   return response.data;
 };
+

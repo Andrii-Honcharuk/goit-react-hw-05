@@ -1,9 +1,18 @@
+.navigationContainer {
+  background-color: rgb(105, 105, 255);
+  padding: 16px 24px;
+  display: flex;
+  gap: 12px;
+}
+
 .link {
+  display: inline-block;
+
   color: blue;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .isActive {
-  color: red;
-  text-decoration: solid;
+  color: rgb(141, 18, 18);
 }

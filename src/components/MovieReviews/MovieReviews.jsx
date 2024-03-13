@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieReviewsById } from "../../films-api";
 
+import css from "./MovieReviews.module.css";
+
 export default function MovieReviews() {
   const { movieId } = useParams();
 
@@ -27,8 +29,10 @@ export default function MovieReviews() {
   console.log("Reviews", reviews.results);
   return (
     <div>
-      {reviews?.results?.length === 0 && "Sorry we don't have any reviews"}
-      <ul>
+      <p className={css.error}>
+        {reviews?.results?.length === 0 && "Sorry we don't have any reviews"}
+      </p>
+      <ul className={css.list}>
         {reviews.results &&
           reviews.results.map((review) => (
             <li key={review.id}>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { getMovieCreditsById } from "../../films-api";
 
+import css from "./MovieCast.module.css";
+
 export default function MovieCast() {
   const location = useLocation();
   console.log("LOCATION", location);
@@ -29,13 +31,19 @@ export default function MovieCast() {
   }, [movieId]);
 
   return (
-    <ul>
+    <ul className={css.list}>
       {cast &&
         cast.map(({ id, name, profile_path, character }) => (
-          <li key={id}>
+          <li key={id} className={css.listItem}>
             <div>
               <img
-                src={`https://image.tmdb.org/t/p/w200${profile_path}`}
+                className={css.castImage}
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                    : "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg"
+                }
+                width={180}
                 alt={name}
               />
               <p>{name}</p>

@@ -1,0 +1,15 @@
+.list {
+  margin-left: 12px;
+  margin-top: 12px;
+  list-style: auto;
+}
+
+.listItem {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.listItem:hover {
+  color: blue;
+  text-decoration: underline;
+}

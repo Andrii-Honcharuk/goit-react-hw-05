@@ -1,6 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { getMovieById } from "../../films-api";
+
+import css from "./MovieDetailsPage.module.css";
+
+const makeActiveClass = ({ isActive }) => {
+  return `css.link ${isActive && css.isActive}`;
+};
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -33,37 +45,43 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   return (
-    <>
+    <div className={css.movieDetContainer}>
       <div>
-        <h2>MovieDetailsPage: {movie.title}</h2>
-        <Link to={backLinkRef.current}>Go back</Link>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt=""
-        />
-        <p>Overview</p>
-        <p>{movie.overview}</p>
-        <p>Genres</p>
-        <p>
-          {movie.genres && movie.genres.map((genre) => genre.name).join(", ")}
-        </p>
-      </div>
-      <div>
+        <h2 className={css.header}>Details about Movie: {movie.title}</h2>
+        <Link className={css.goBack} to={backLinkRef.current}>
+          Go back
+        </Link>
+        <div className={css.baseContainer}>
+          <img
+            className={css.imgMovie}
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt=""
+          />
+          <div>
+            <b>Overview:</b>
+            <p>{movie.overview}</p>
+            <b className={css.genres}>Genres:</b>
+            <p>
+              {movie.genres &&
+                movie.genres.map((genre) => genre.name).join(", ")}
+            </p>
+          </div>
+        </div>
         <h3>Details</h3>
-        <ul>
+        <ul className={css.listLinks}>
           <li>
-            <Link to="cast" state={location}>
+            <NavLink to="cast" state={location} className={makeActiveClass}>
               Cast
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="reviews" state={location}>
+            <NavLink to="reviews" state={location} className={makeActiveClass}>
               Reviews
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }

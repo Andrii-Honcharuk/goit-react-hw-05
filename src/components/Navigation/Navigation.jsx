@@ -8,7 +8,7 @@ const makeActiveClass = ({ isActive }) => {
 
 export default function Navigation() {
   return (
-    <nav>
+    <nav className={css.navigationContainer}>
       <NavLink to="/" className={makeActiveClass}>
         Home
       </NavLink>

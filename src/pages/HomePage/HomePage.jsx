@@ -3,6 +3,8 @@ import { getMovies } from "../../films-api";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import MovieList from "../../components/MovieList/MovieList";
 
+import css from "./HomePage.module.css";
+
 export default function HomePage() {
   const [movies, setMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +29,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
-      <h1>Trending Movies to day</h1>
-      {isLoading && <b>Loading .... </b>}
+    <div className={css.hpContainer}>
+      <h1 className={css.header}>Trending Movies to day</h1>
+      {isLoading && <b className={css.header}>Loading .... </b>}
       {error && <ErrorMessage />}
       <MovieList movies={movies} />
     </div>
