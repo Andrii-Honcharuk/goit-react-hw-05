@@ -50,7 +50,7 @@ export const getMovieReviewsById = async (movieId) => {
 //Search
 //'https://api.themoviedb.org/3/search/movie?query=SOMETHINK&include_adult=false&language=en-US&page=2'
 
-export const getMovieByName = async (query, page) => {
+export const getMovieByName = async (query, page=1) => {
   const response = await axios.get(`/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`, options);
   console.log('Query - ', query,'SEARCH', response.data);
   return response.data;

@@ -3,15 +3,15 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import MovieList from "../../components/MovieList/MovieList";
 import { getMovieByName } from "../../films-api";
 import { useEffect } from "react";
-import LoadMore from "../../components/LoadMoreBtn/LoadMoreBtn";
+// import LoadMore from "../../components/LoadMoreBtn/LoadMoreBtn";
 
 export default function MoviesPage() {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [query, setQuery] = useSearchParams();
   const [movies, setMovies] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadMore, setIsLoadMore] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isLoadMore, setIsLoadMore] = useState(false);
 
   const movieFilter = query.get("films") ?? "";
 
@@ -33,12 +33,13 @@ export default function MoviesPage() {
     async function searchMovies() {
       try {
         // setMovies([]);
-        const data = await getMovieByName(movieFilter, page);
-        setMovies((prevMovies) => {
-          return [...prevMovies, ...data.results];
-        });
+        const data = await getMovieByName(
+          movieFilter
+          // page
+        );
+        setMovies(data.results);
         console.log("Results", data.results);
-        setIsLoadMore(data.total_pages > page);
+        // setIsLoadMore(data.total_pages > page);
       } catch (error) {
         console.error(error);
       } finally {
@@ -46,10 +47,12 @@ export default function MoviesPage() {
       }
     }
     searchMovies();
-  }, [movieFilter, page]);
+  }, [movieFilter]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // setPage(1);
+    setMovies([]);
 
     const formData = new FormData(e.target);
     const searchQuery = formData.get("query");
@@ -62,9 +65,11 @@ export default function MoviesPage() {
     }
   };
 
-  const handleLoadMore = () => {
-    setPage(page + 1);
-  };
+  // const handleLoadMore = () => {
+  // setPage(page + 1);
+  // query.set("page", page + 1);
+  // setQuery(query);
+  // };
 
   return (
     <div>
@@ -82,7 +87,7 @@ export default function MoviesPage() {
       <div>
         <MovieList movies={movies} />
       </div>
-      {isLoadMore && !isLoading && <LoadMore onClick={handleLoadMore} />}
+      {/* {isLoadMore && !isLoading && <LoadMore onClick={handleLoadMore} />} */}
     </div>
   );
 }
