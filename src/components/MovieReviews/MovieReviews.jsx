@@ -6,10 +6,11 @@ import css from "./MovieReviews.module.css";
 
 export default function MovieReviews() {
   const { movieId } = useParams();
+  const [reviews, setReviews] = useState([]);
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(false);
-  const [reviews, setReviews] = useState(false);
+
   useEffect(() => {
     async function fetchMovieReviewsById() {
       try {
@@ -29,10 +30,15 @@ export default function MovieReviews() {
   return (
     <div>
       <p className={css.error}>
-        {reviews?.results?.length === 0 && "Sorry we don't have any reviews"}
+        {reviews &&
+          reviews.results &&
+          reviews.results.length === 0 &&
+          "Sorry we don't have any reviews"}
       </p>
       <ul className={css.list}>
-        {reviews.results &&
+        {reviews &&
+          reviews.results &&
+          reviews.results.length > 0 &&
           reviews.results.map((review) => (
             <li key={review.id}>
               <h3>{review.author}</h3>

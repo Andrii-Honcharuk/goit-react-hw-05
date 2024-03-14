@@ -6,10 +6,11 @@ import css from "./MovieCast.module.css";
 
 export default function MovieCast() {
   const { movieId } = useParams();
+  const [cast, setCast] = useState([]);
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(false);
-  const [cast, setCast] = useState(false);
+
   useEffect(() => {
     async function fetchMovieCastById() {
       try {
@@ -27,7 +28,7 @@ export default function MovieCast() {
 
   return (
     <ul className={css.list}>
-      {cast &&
+      {cast.length > 0 &&
         cast.map(({ id, name, profile_path, character }) => (
           <li key={id} className={css.listItem}>
             <div>

@@ -6,7 +6,7 @@ import MovieList from "../../components/MovieList/MovieList";
 import css from "./HomePage.module.css";
 
 export default function HomePage() {
-  const [movies, setMovies] = useState(false);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
